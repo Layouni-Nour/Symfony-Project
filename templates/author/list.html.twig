@@ -1,0 +1,31 @@
+{% if A is empty%}
+<p>No element</p>
+{%else%}
+<table>
+<tr>
+<td>ID</td>
+<td>Picture</td>
+<td>Username</td>
+<td>Email</td>
+<td>Nb_books</td>
+<td>Link</td>
+</tr>
+{% for author in A%}
+<tr>
+<td>{{author.id}}</td>
+<td>{{author.picture}}</td>
+<td>{{author.username|upper}}</td>
+<td>{{author.email}}</td>
+<td>{{author.nb_books}}</td>
+<td><a href="{{ path('details', {id: author.id}) }}">details</a>
+</td>
+</tr>
+{% endfor%}
+</table>
+{% set books=0 %}
+{% for author in A%}
+    {% set books = books + author.nb_books %}
+{% endfor%}
+<p>nombre total des livres : {{ books }}</p>
+<p>nombre des auteurs : {{A|length}} </p>
+{%endif%}
